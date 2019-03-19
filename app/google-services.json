@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "967297783666",
+    "firebase_url": "https://fir-kotlindemo-6ab43.firebaseio.com",
+    "project_id": "fir-kotlindemo-6ab43",
+    "storage_bucket": "fir-kotlindemo-6ab43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967297783666:android:08187841c5b37618",
+        "android_client_info": {
+          "package_name": "com.vitaly_kuznetsov.firebasekotlindemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967297783666-b674deqaa1fn8vbnj01t5nrft98g6v13.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vitaly_kuznetsov.firebasekotlindemo",
+            "certificate_hash": "b6b57615d9af6315113cd6bd3a7be42de55f24b8"
+          }
+        },
+        {
+          "client_id": "967297783666-31g6grr0o6quc7vbbs01qvqmh3qchp29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNfmefUna66W1xme9Qb4ttsQfQKzHBeM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967297783666-31g6grr0o6quc7vbbs01qvqmh3qchp29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

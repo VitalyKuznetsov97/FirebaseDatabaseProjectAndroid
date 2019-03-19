@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FirebaseKotlinDemo</string>
+    <string name="default_notification_channel_id">firebase_kotlin_demo_0</string>
+    <string name="fcm_message">You received a new Message!</string>
+    <string name="default_notification_channel_name">Firebase Kotlin Service</string>
+    <string name="post_to_database">Post to database</string>
+    <string name="field_name">Field Name</string>
+    <string name="value">Value</string>
+    <string name="send">send</string>
+    <string name="reconnect">Reconnect</string>
+</resources>
