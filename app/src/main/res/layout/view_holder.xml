@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView  android:textSize="20sp"
+               android:textColor="@color/common_google_signin_btn_text_dark_focused"
+               android:padding="8dp"
+               android:id="@+id/text_holder"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+
+</LinearLayout>

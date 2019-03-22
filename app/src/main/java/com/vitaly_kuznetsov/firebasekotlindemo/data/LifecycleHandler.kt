@@ -25,7 +25,7 @@ class LifecycleHandler : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityStarted(p0: Activity?) {
         active = true
-        Log.d(TAG, "star")
+
     }
 
     override fun onActivityDestroyed(p0: Activity?) {

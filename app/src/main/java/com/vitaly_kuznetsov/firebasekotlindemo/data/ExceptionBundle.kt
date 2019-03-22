@@ -2,7 +2,7 @@ package com.vitaly_kuznetsov.firebasekotlindemo.data
 
 import android.os.Bundle
 
-class ExceptionBundle(val reason: Reason) : Exception() {
+class ExceptionBundle(private val reason: Reason) : Exception() {
 
     val extras = Bundle()
     val ERROR_STRING = "ERROR"
@@ -20,6 +20,8 @@ class ExceptionBundle(val reason: Reason) : Exception() {
         UNKNOWN(-1),
         NETWORK_UNAVAILABLE(0),
         EMPTY_FIELDS(1),
-        FIREBASE_UNAVAILABLE(2)
+        FIREBASE_UNAVAILABLE(2),
+        WRONG_CONTENTS_FORMAT(3),
+        WRONG_FIELD_FORMAT(4)
     }
 }

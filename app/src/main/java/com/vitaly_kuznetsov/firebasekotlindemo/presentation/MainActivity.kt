@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vitaly_kuznetsov.firebasekotlindemo.R
 import com.vitaly_kuznetsov.firebasekotlindemo.data.ExceptionBundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -43,8 +44,9 @@ class MainActivity : AppCompatActivity(), IMainView {
         right.setText("")
     }
 
-    override fun showDataBaseContents(contents : String) {
-        firebase_contents.text = contents
+    override fun showDataBaseContents(list : List<String>) {
+        firebase_contents.layoutManager = LinearLayoutManager(this)
+        firebase_contents.adapter = ListAdapter(list)
         error_text.text = ""
     }
 

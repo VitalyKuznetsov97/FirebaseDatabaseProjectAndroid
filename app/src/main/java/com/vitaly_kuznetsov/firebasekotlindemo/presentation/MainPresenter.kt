@@ -20,9 +20,14 @@ class MainPresenter(private val view: IMainView) {
 
     fun onSendClicked() {
         val list = view.getFields()
+        val num = list.component1().toIntOrNull()
 
         if (list.component1() == "" || list.component2() == "") {
             onError(ExceptionBundle(ExceptionBundle.Reason.EMPTY_FIELDS))
+            return
+        }
+        else if (num == null || num < 0 || num > 100) {
+            onError(ExceptionBundle(ExceptionBundle.Reason.WRONG_FIELD_FORMAT))
             return
         }
 
@@ -52,11 +57,16 @@ class MainPresenter(private val view: IMainView) {
 
     fun onMessageReceived(message : String?){
         if (message != null){
-            view.showDataBaseContents(message)
+            try {
+                view.showDataBaseContents(transform(message))
+            }
+            catch (e : ExceptionBundle){
+                onError(e)
+            }
 
             if (!fireBaseController.started) fireBaseController.startService(view.getContext()).subscribe()
         }
-        else view.showDataBaseContents("Empty")
+        else view.showDataBaseContents(listOf("Empty"))
         disposable?.dispose()
     }
 

@@ -17,6 +17,7 @@ import com.vitaly_kuznetsov.firebasekotlindemo.presentation.MainPresenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 class FireBaseController {
@@ -25,8 +26,21 @@ class FireBaseController {
     val TAG = "FIREBASE_LOG"
 
     fun sendMessage (reference : String, message : String) {
-        val dbReference = FirebaseDatabase.getInstance().getReference(reference)
-        dbReference.setValue(message)
+
+        val newMessage: String
+
+        newMessage = if (message.contains(" ")) {
+            message.replace(" ", "_")
+        } else {
+            message.replace(" ", "_")
+        }
+
+        var dbReference = FirebaseDatabase.getInstance().getReference("contents/" + reference + "/contentValue")
+        dbReference.setValue(newMessage)
+
+        dbReference = FirebaseDatabase.getInstance().getReference("contents/" + reference + "/timestamp")
+        dbReference.setValue(Date().time)
+
     }
 
     fun connect (presenter : MainPresenter) {

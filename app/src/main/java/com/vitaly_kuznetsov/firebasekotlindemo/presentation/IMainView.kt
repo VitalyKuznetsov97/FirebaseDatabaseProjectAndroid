@@ -6,7 +6,7 @@ import com.vitaly_kuznetsov.firebasekotlindemo.data.ExceptionBundle
 interface IMainView {
     fun getFields() : List<String>
     fun clearFields()
-    fun showDataBaseContents(contents : String)
+    fun showDataBaseContents(list : List<String>)
     fun showError(error : ExceptionBundle)
     fun toggleReconnect(toggle : Boolean)
 
