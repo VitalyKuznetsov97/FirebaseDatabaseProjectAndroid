@@ -12,8 +12,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import com.vitaly_kuznetsov.firebasekotlindemo.R
 import com.vitaly_kuznetsov.firebasekotlindemo.presentation.MainPresenter
+import com.vitaly_kuznetsov.firebasekotlindemo.presentation.transform
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -25,20 +27,21 @@ class FireBaseController {
     var started = false
     val TAG = "FIREBASE_LOG"
 
-    fun sendMessage (reference : String, message : String) {
+    var arrayLength = 0
+
+    fun sendMessage (message : String) {
 
         val newMessage: String
 
         newMessage = if (message.contains(" ")) {
             message.replace(" ", "_")
-        } else {
-            message.replace(" ", "_")
-        }
+        } else { message }
 
-        var dbReference = FirebaseDatabase.getInstance().getReference("contents/" + reference + "/contentValue")
+
+        var dbReference = FirebaseDatabase.getInstance().getReference("contents/" + arrayLength + "/contentValue")
         dbReference.setValue(newMessage)
 
-        dbReference = FirebaseDatabase.getInstance().getReference("contents/" + reference + "/timestamp")
+        dbReference = FirebaseDatabase.getInstance().getReference("contents/" + arrayLength + "/timestamp")
         dbReference.setValue(Date().time)
 
     }
@@ -52,6 +55,8 @@ class FireBaseController {
                 // whenever data at this location is updated.
                 val value = dataSnapshot.value.toString()
                 presenter.onMessageReceived(value)
+
+                arrayLength = transform(value).size
             }
 
             override fun onCancelled(error: DatabaseError) {

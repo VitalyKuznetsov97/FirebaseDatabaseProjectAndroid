@@ -19,34 +19,30 @@ class MainPresenter(private val view: IMainView) {
     fun intentHandled(msg : Any) {if (msg is String) Log.i(TAG, msg)}
 
     fun onSendClicked() {
-        val list = view.getFields()
-        val num = list.component1().toIntOrNull()
+        val valueText = view.getValue()
+        val num = valueText.toIntOrNull()
 
-        if (list.component1() == "" || list.component2() == "") {
+        if (valueText == "") {
             onError(ExceptionBundle(ExceptionBundle.Reason.EMPTY_FIELDS))
-            return
-        }
-        else if (num == null || num < 0 || num > 100) {
-            onError(ExceptionBundle(ExceptionBundle.Reason.WRONG_FIELD_FORMAT))
             return
         }
 
         view.clearFields()
-        checkConnection(list)
+        checkConnection(valueText)
     }
 
     fun onReconnectClicked() {
         checkConnection()
     }
 
-    private fun checkConnection(list: List<String> = listOf()){
+    private fun checkConnection(valueText: String = ""){
         val internetConnection = InternetConnection()
         disposable = internetConnection.hasInternetConnection()
             .subscribe{hasInternet ->
                 if (hasInternet){
                     view.toggleReconnect(false)
                     fireBaseController.connect(this)
-                    if (list.isNotEmpty()) sendMessage(list)
+                    if (valueText != "") sendMessage(valueText)
                 }
                 else{
                     view.toggleReconnect(true)
@@ -70,8 +66,8 @@ class MainPresenter(private val view: IMainView) {
         disposable?.dispose()
     }
 
-    private fun sendMessage(list: List<String>) {
-        fireBaseController.sendMessage(list.component1(), list.component2())
+    private fun sendMessage(message: String) {
+        fireBaseController.sendMessage(message)
         disposable?.dispose()
     }
 

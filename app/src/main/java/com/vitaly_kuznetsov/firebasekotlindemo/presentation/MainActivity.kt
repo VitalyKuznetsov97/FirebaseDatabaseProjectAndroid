@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity(), IMainView {
 
         button.setOnClickListener {presenter.onSendClicked()}
         reconnect.setOnClickListener {presenter.onReconnectClicked()}
-        left.setOnFocusChangeListener { _, _ -> checkError() }
         right.setOnFocusChangeListener { _, _ -> checkError() }
 
         intent.extras?.let {
@@ -37,10 +36,9 @@ class MainActivity : AppCompatActivity(), IMainView {
         if (error_text.text == checkError.extras.getString(checkError.ERROR_STRING)) error_text.text = ""
     }
 
-    override fun getFields() = listOf(left.text.toString(), right.text.toString())
+    override fun getValue() = right.text.toString()
 
     override fun clearFields() {
-        left.setText("")
         right.setText("")
     }
 
